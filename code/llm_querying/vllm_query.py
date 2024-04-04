@@ -11,7 +11,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process model and query paths")
 
     parser.add_argument("--batch-size",         type=int, default=1, help="Query batch size.")
-    parser.add_argument("--chat-mode",          type=int, default=1, help="Chat Mode. Set to 1 if you wish to use the transformers' tokenizer driven chat template, else set to 0.")
     parser.add_argument("--query-field",        type=str, default="query", help="Specify the name of the field (dict key) to be queried.")
     parser.add_argument("--query-limit",        type=int, default=-1, help="Maximum number of queries to process. If -1, will assume the length of JSON queries.")
     parser.add_argument("--max-len",            type=int, default=2000, help="Maximum overall length of text. Includes prompt length.")
@@ -61,19 +60,16 @@ if __name__ == "__main__":
 
         data = json.load(open(fpath,'r'))
 
-        if args.chat_mode:
-            queries = [d[args.query_field] for d in data]
-            if "llama2" in args.model_name:
-                chats = [[
-                    {"role": "system", "content": "You are an expert in solving math questions. Answer the following question to the best of your ability."},
-                    {"role": "user", "content": q},
-                ] for q in queries]
-            else:
-                chats = [[{"role": "user", "content": "You are an expert in solving math questions. Answer the following question to the best of your ability." + " " + q}] for q in queries]
-            tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
-            prompts = [tokenizer.apply_chat_template(chat, tokenize=False) for chat in chats]
+        queries = [d[args.query_field] for d in data]
+        if "llama2" in args.model_name:
+            chats = [[
+                {"role": "system", "content": q["system_prompt"]},
+                {"role": "user", "content": q["task_prompt"]},
+            ] for q in queries]
         else:
-            prompts = [d[args.query_field] for d in data]
+            chats = [[{"role": "user", "content": q["system_prompt"] + "\n" + q["task_prompt"]}] for q in queries]
+        tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
+        prompts = [tokenizer.apply_chat_template(chat, tokenize=False) for chat in chats]
 
         if args.query_limit != -1:
             if args.query_limit < 1:
