@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ### Collect LLM Responses
 
-1. Build query prompts from GSM8K questions by running the notebook:
+1. Build query prompts from GSM8K questions by running the notebook: [`./code/llm_querying/build_query_prompts.ipynb`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/llm_querying/build_query_prompts.ipynb)
 2. Run [`./code/llm_querying/vllm_query.py`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/llm_querying/vllm_query.py) for querying all prompts for one LLM at a time:
    ```bash
 	python3 std_query_vllm.py \
