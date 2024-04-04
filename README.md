@@ -22,12 +22,26 @@ pip install -r requirements.txt
 
 ### Collect LLM Responses
 
+1. Build query prompts from GSM8K questions by running the notebook:
+2. Run [`./code/llm_querying/vllm_query.py`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/llm_querying/vllm_query.py) for querying all prompts for one LLM at a time:
+   ```bash
+	python3 std_query_vllm.py \
+	--model-name "meta-llama/Llama-2-13b-chat-hf" \
+	--batch-size 1 \
+	--query-limit -1 \
+	--n-seq 1 \
+	--seed $RANDOM \
+	--temperature 0.8 \
+	--repetition-penalty 1.0 \
+	--max-len 2000 \
+	--query-paths ../../data/query_datasets/gsm8k_queries.json
+   ```
 
 [OR]
 
 ### Import Response Data
 The LLM response data used for our work is available [here](https://drive.google.com/file/d/1A2N2hrVjuKc2mj2Lf_ew3BmpZ5rBoGRu/view?usp=sharing).
-Download the zip and extract and replace the contents into the `./data` folder for further processing.
+Download the zip, extract, and replace the contents into the `./data` folder for further processing.
 
 ### Extracting Features, Training & Evaluating Classifiers
 1. (Optional) Specify HuggingFace Access Token at [here](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/cac904cb4b84293ada10283a650608c02d6e7c88/code/classifier_based_analysis/utils.py#L4) for accessing restricted models like LLama2.
@@ -54,8 +68,8 @@ Download the zip and extract and replace the contents into the `./data` folder f
 
 ### Feature Set
 
-The paper proposes a total of 23 features spanning the categories: Linguistic (L), Math (M), and World Knowledge (W).
-A detailed description of each feature and corresponding Python functions for extraction are covered in [`./code/classifier_based_analysis/feature_extraction.py`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/classifier_based_analysis/feature_extraction.py).
+Our work proposes a total of 23 features spanning three types: Linguistic (L), Math (M), and World Knowledge (W).
+A detailed description of each feature and corresponding Python functions for extraction is covered in [`./code/classifier_based_analysis/feature_extraction.py`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/classifier_based_analysis/feature_extraction.py).
 
 <img width="700" alt="image" src="https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/assets/47175964/62e97b15-54aa-43cc-8609-c85d700e5565">
 
