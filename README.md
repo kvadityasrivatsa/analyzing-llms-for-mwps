@@ -14,7 +14,7 @@ This repository contains the raw data, the feature data extracted, and code to r
 
 ### Installation
 
-```
+```bash
 git clone https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps.git
 cd analyzing-llms-for-mwps
 pip install -r requirements.txt
@@ -59,6 +59,18 @@ A detailed description of each feature and corresponding Python functions for ex
 
 <img width="700" alt="image" src="https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/assets/47175964/62e97b15-54aa-43cc-8609-c85d700e5565">
 
+## Citation
+
+```bibtex
+@misc{srivatsa2024makes,
+      title={What Makes Math Word Problems Challenging for LLMs?}, 
+      author={KV Aditya Srivatsa and Ekaterina Kochmar},
+      year={2024},
+      eprint={2403.11369},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 
 
 
