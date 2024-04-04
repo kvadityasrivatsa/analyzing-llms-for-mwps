@@ -48,7 +48,7 @@ Download the zip, extract, and replace the contents into the `./data` folder for
 2. Run the notebook [`./code/classifier_based_analysis/predicting_success_rate.ipynb`](https://github.com/kvadityasrivatsa/analyzing-llms-for-mwps/blob/main/code/classifier_based_analysis/predicting_success_rate.ipynb) to:
 	1. Extract linguistic, math, and world knowledge features from LLM responses on GSM8K.
 	2. Generate relevant feature distribution statistics.
-	3. Train statistical classifiers on extracted features to predict. which questions are always or never solved correctly by LLMs.
+	3. Train statistical classifiers on extracted features to predict which questions are always or never solved correctly by LLMs.
 
 ### Supported LLMs
 
