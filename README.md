@@ -1,5 +1,5 @@
 # Analyzing LLMs for Math Word Problems
-Paper: [What Makes Math Word Problems Challenging for LLMs?](https://arxiv.org/abs/2403.11369) [NAACL 2024]
+Paper: [What Makes Math Word Problems Challenging for LLMs?](https://aclanthology.org/2024.findings-naacl.72/) [NAACL 2024]
 
 ## Overview
 
